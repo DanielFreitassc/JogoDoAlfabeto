@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public record ProductResponseDto(
     Long id,
+    String image,
     String name,
     String type,
     int stock,
