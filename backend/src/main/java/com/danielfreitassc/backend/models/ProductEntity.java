@@ -24,7 +24,8 @@ public class ProductEntity {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
-    private int quantity;
-    private  BigDecimal price;
+    private String type;
+    private int stock;
+    private BigDecimal price;
+    private boolean  stockStatus;
 }

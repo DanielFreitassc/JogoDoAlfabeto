@@ -5,9 +5,10 @@ import java.math.BigDecimal;
 public record ProductResponseDto(
     Long id,
     String name,
-    String description,
-    int quantity,
-    BigDecimal price
+    String type,
+    int stock,
+    BigDecimal price,
+    boolean stockStatus
 ) {
     
 }
