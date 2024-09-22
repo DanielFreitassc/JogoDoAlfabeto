@@ -27,7 +27,7 @@ public class ProductEntity {
     @Lob
     private String image;
     private String name;
-    private String type;
+    private String description;
     private int stock;
     private BigDecimal price;
     private boolean  stockStatus;

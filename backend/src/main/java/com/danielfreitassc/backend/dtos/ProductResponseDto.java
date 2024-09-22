@@ -6,7 +6,7 @@ public record ProductResponseDto(
     Long id,
     String image,
     String name,
-    String type,
+    String description,
     int stock,
     BigDecimal price,
     boolean stockStatus
