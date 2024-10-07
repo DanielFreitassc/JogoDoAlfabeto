@@ -1,6 +1,5 @@
 package com.danielfreitassc.backend.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -29,9 +28,9 @@ public class ProductService {
         return productMapper.toResponse(productEntity);
     }
 
-    public List<ProductResponseDto> getAll(Pageable pageable) {
-        Page<ProductEntity> productEntitys = productRepository.findAll(pageable);
-        return productEntitys.stream().map(productMapper::toResponse).toList();
+    public Page<ProductResponseDto> getAll(Pageable pageable, String search) {
+        Page<ProductEntity> productEntitys = productRepository.findAll(pageable,search);
+        return productEntitys.map(productMapper::toResponse);
     }
 
     public ProductResponseDto getById(Long id) {

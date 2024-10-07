@@ -10,6 +10,4 @@ public record ProductResponseDto(
     int stock,
     BigDecimal price,
     boolean stockStatus
-) {
-    
-}
+) {}
