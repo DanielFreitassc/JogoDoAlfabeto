@@ -1,0 +1,23 @@
+services:
+  nginx:
+    build: ./frontend
+    container_name: react
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/frontend/etc/nginx
+    environment:
+      - NODE_ENV=production
+    networks:
+      - public_network
+    depends_on:
+      - springboot
+  springboot:
+    build: ./backend
+    container_name: springboot
+    ports:
+      - 8080:8080
+    networks:
+      - public_network
+networks:
+  public_network:
