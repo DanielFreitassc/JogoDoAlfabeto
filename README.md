@@ -1,5 +1,7 @@
 # Jogo do Alfabeto
 
+![front-view-hand-holding-smartphone](https://github.com/user-attachments/assets/bc172910-5c8d-4667-9ef0-6f177f19df48)
+
 **Descrição:**
 
 O Jogo do Alfabeto é uma aplicação simples e divertida que desafia os jogadores a identificar a posição relativa de letras do alfabeto. O jogo exibe uma letra e o jogador deve indicar se ela vem antes ou depois de outra letra. Cada acerto soma um ponto, e ao final do jogo, o score total do jogador é mostrado.
