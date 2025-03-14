@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-// Import the Coins icon
 import { AlertCircle, CheckCircle2, Coins, Moon, Sun, Trophy } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
@@ -22,14 +21,12 @@ export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(true)
   const [currentScore, setCurrentScore] = useState(0)
   const [highScore, setHighScore] = useState(0)
-  // Add a new state variable to track when buttons should be disabled
   const [buttonsDisabled, setButtonsDisabled] = useState(false)
 
-  // Update the fetchQuestion function to enable buttons when a new question loads
   const fetchQuestion = async () => {
     setLoading(true)
     try {
-      const response = await fetch("http://localhost:8080/game/question")
+      const response = await fetch("/game/question")
       if (response.ok) {
         const data = await response.json()
         setQuestion(data)
@@ -40,56 +37,49 @@ export default function Home() {
       console.error("Error fetching question:", error)
     } finally {
       setLoading(false)
-      setButtonsDisabled(false) // Enable buttons when new question is loaded
+      setButtonsDisabled(false)
     }
   }
 
-  // Update the handleAnswer function to disable buttons immediately after answering
   const handleAnswer = async (answer: number) => {
-    // Disable buttons immediately to prevent multiple clicks
     setButtonsDisabled(true)
 
     try {
-      const response = await fetch(`http://localhost:8080/game/answer?userAnswer=${answer}`, {
+      const response = await fetch(`/game/answer?userAnswer=${answer}`, {
         method: "POST",
       })
 
       const data: Answer = await response.json()
 
       if (response.ok) {
-        // Correct answer - increment score
         const newScore = currentScore + 1
         setCurrentScore(newScore)
 
-        // Update high score if current score is higher
         if (newScore > highScore) {
           setHighScore(newScore)
         }
 
         setResult({ success: true, message: data.message })
       } else {
-        // Incorrect answer - reset current score
+
         setCurrentScore(0)
         setResult({ success: false, message: data.message })
       }
 
-      // Reload question after a short delay
       setTimeout(() => {
         setResult(null)
         fetchQuestion()
       }, 2000)
     } catch (error) {
       console.error("Error submitting answer:", error)
-      setButtonsDisabled(false) // Re-enable buttons if there's an error
+      setButtonsDisabled(false) 
     }
   }
 
   useEffect(() => {
     fetchQuestion()
-    // Apply dark mode by default
     document.documentElement.classList.add("dark")
 
-    // Load scores from localStorage
     const savedScore = localStorage.getItem("currentScore")
     const savedHighScore = localStorage.getItem("highScore")
 
@@ -102,7 +92,6 @@ export default function Home() {
     }
   }, [])
 
-  // Save scores to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("currentScore", currentScore.toString())
     localStorage.setItem("highScore", highScore.toString())

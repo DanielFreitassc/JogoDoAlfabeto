@@ -5,7 +5,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx:/frontend/etc/nginx
+      - ./frontend/nginx/nginx.conf:/etc/nginx/nginx.conf 
+      - ./frontend/nginx/conf.d:/etc/nginx/conf.d 
     environment:
       - NODE_ENV=production
     networks:
@@ -21,3 +22,4 @@ services:
       - public_network
 networks:
   public_network:
+    name: public_network
