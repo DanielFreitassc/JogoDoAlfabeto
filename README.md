@@ -46,4 +46,3 @@ O Jogo do Alfabeto é uma aplicação simples e divertida que desafia os jogador
 - Docker
 - React
 - Springboot
-
